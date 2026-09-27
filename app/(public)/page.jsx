@@ -5,7 +5,7 @@ import LatestEntries from "@/app/_components/LatestEntries";
 
 export const metadata = {
   title: "Home",
-  description: "Brochure Website Homepage",
+  description: "Portfolio Website Homepage",
 };
 
 function Homepage() {

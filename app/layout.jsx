@@ -11,10 +11,10 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   title: {
-    template: "%s | Brochure Website",
-    default: "Brochure Website",
+    template: "%s | Portfolio Website",
+    default: "Portfolio Website",
   },
-  description: "Reusable Brochure Website Foundation",
+  description: "Reusable Portfolio Website Foundation",
 };
 
 export default function RootLayout({ children }) {
