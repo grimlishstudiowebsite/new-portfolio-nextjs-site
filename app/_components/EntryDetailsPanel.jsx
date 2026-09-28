@@ -8,11 +8,7 @@ async function EntryDetailsPanel({ entryId }) {
   if (!entry) {
     notFound();
   }
-  return (
-    <div>
-      <EntryDetails entry={entry} />
-    </div>
-  );
+  return <EntryDetails entry={entry} />;
 }
 
 export default EntryDetailsPanel;

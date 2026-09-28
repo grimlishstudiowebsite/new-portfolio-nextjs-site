@@ -48,6 +48,24 @@ function CreateEntryForm() {
           className="w-full rounded border border-line bg-muted"
         />
       </div>
+      <div className="space-y-2">
+        <label htmlFor="year">Year</label>
+        <input
+          id="year"
+          name="year"
+          type="number"
+          className="w-full rounded border border-line bg-muted"
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="dimensions">Dimensions</label>
+        <input
+          id="dimensions"
+          name="dimensions"
+          type="text"
+          className="w-full rounded border border-line bg-muted"
+        />
+      </div>
       <div className="flex flex-col gap-1 space-y-2">
         <label htmlFor="image">Image</label>
         <input

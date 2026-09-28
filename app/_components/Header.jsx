@@ -8,7 +8,7 @@ import MobileMenuButton from "./MobileMenuButton";
 function Header() {
   return (
     <MobileMenuProvider>
-      <header className="border-line border-b bg-muted">
+      <header className="">
         <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
           <Logo />
           <div className="flex flex-col gap-2">

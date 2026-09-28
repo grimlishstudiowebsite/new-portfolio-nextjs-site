@@ -6,11 +6,9 @@ async function EntryDetailsPage({ params }) {
   const { entryId } = await params;
 
   return (
-    <div>
-      <Suspense fallback={<EntryDetailsFallback />}>
-        <EntryDetailsPanel entryId={entryId} />
-      </Suspense>
-    </div>
+    <Suspense fallback={<EntryDetailsFallback />}>
+      <EntryDetailsPanel entryId={entryId} />
+    </Suspense>
   );
 }
 

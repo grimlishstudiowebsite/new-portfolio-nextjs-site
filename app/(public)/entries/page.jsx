@@ -32,9 +32,9 @@ async function EntriesPage({ searchParams }) {
     return (
       <div className="">
         <div>
-          <h1 className="mb-4 text-center text-2xl font-semibold">Entries</h1>
+          <h1 className="mb-4 text-center text-2xl font-semibold">Artwork</h1>
           <p className="mb-4 text-center text-base font-medium">
-            No entries found
+            No Artwork found
           </p>
         </div>
         <div className="">
@@ -47,16 +47,12 @@ async function EntriesPage({ searchParams }) {
   return (
     <div className="">
       <div>
-        <h1 className="mb-4 text-center text-2xl font-semibold tab:text-3xl">
-          Entries
+        <h1 className="mb-12 text-center text-2xl font-semibold tab:text-3xl">
+          Artwork
         </h1>
       </div>
 
-      <div className="mb-6">
-        <EntryFilter category={selectedCategory} />
-      </div>
-
-      <div className="grid px-4 sm:grid-cols-2 sm:px-2 tab:grid-cols-3 dtop-sm:mb-6 dtop-sm:gap-4 dtop-sm:px-12">
+      <div className="grid px-2 sm:grid-cols-2 sm:px-2 tab:grid-cols-3 dtop-sm:mb-6 dtop-sm:gap-4 dtop-sm:px-8">
         {entries.map((entry) => (
           <EntryCard key={entry.id} entry={entry} />
         ))}

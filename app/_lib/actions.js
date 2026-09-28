@@ -47,6 +47,10 @@ async function createEntryAction(_previousState, formData) {
 	const title = String(formData.get("title") ?? "").trim();
 	const description = String(formData.get("description") ?? "").trim();
 	const category = String(formData.get("category") ?? "").trim();
+	const dimensions = String(formData.get("dimensions") ?? "").trim();
+
+	const yearInput = String(formData.get("year") ?? "").trim();
+	const year = yearInput === "" ? null : Number(yearInput);
 
 	const slug = title.toLowerCase().trim().replace(/\s+/g, "-");
 
@@ -124,6 +128,8 @@ async function createEntryAction(_previousState, formData) {
 				title,
 				description,
 				category,
+				dimensions,
+				year,
 				slug,
 				image_url: imageUrl,
 				image_path: uploadedImagePath
@@ -209,6 +215,11 @@ async function updateEntryAction(_previousState, formData) {
 	const title = String(formData.get("title") ?? "").trim();
 	const description = String(formData.get("description") ?? "").trim();
 	const category = String(formData.get("category") ?? "").trim();
+
+	const dimensions = String(formData.get("dimensions") ?? "").trim();
+
+	const yearInput = String(formData.get("year") ?? "").trim();
+	const year = yearInput === "" ? null : Number(yearInput);
 
 	const slug = title.toLowerCase().trim().replace(/\s+/g, "-");
 
@@ -311,6 +322,8 @@ async function updateEntryAction(_previousState, formData) {
 		description,
 		category,
 		slug,
+		dimensions,
+		year
 	}
 
 	if (hasNewImage) {

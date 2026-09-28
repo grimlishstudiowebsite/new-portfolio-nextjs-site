@@ -11,7 +11,7 @@ function MobileMenuButton() {
       aria-label={isOpen ? "close-menu" : "Open menu"}
       aria-expanded={isOpen}
       onClick={toggleMenu}
-      className="border-line rounded border bg-primary p-1 text-primary-light tab-sm:hidden"
+      className="rounded border border-line bg-secondary p-1 text-primary tab-sm:hidden"
       type="button"
     >
       {isOpen ? (

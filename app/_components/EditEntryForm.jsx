@@ -56,6 +56,26 @@ function EditEntryForm({ entry }) {
           className="w-full rounded border border-line bg-primary-light px-2 py-1 outline-none"
         />
       </div>
+      <div className="space-y-2">
+        <label htmlFor="year">Year</label>
+        <input
+          id="year"
+          name="year"
+          type="number"
+          className="w-full rounded border border-line bg-muted"
+          defaultValue={entry.year ?? ""}
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="dimensions">Dimensions</label>
+        <input
+          id="dimensions"
+          name="dimensions"
+          type="text"
+          className="w-full rounded border border-line bg-muted"
+          defaultValue={entry.dimensions ?? ""}
+        />
+      </div>
       {entry.image_url && (
         <div className="flex flex-col gap-2">
           <div className="">

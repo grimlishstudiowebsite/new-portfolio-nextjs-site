@@ -2,8 +2,9 @@ import Link from "next/link";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/entries", label: "Entries" },
+  { href: "/entries", label: "Artwork" },
   { href: "/about", label: "About" },
+  { href: "https://grimlishstudio.substack.com/", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -11,7 +12,7 @@ function Navigation({ variant = "desktop", onNavigate }) {
   const isMobile = variant === "mobile";
 
   return (
-    <nav aria-label="Main navigation" className="px-6 py-4">
+    <nav aria-label="Main navigation" className="px-6 py-4 font-sans-headings">
       <ul
         className={
           isMobile
@@ -23,7 +24,7 @@ function Navigation({ variant = "desktop", onNavigate }) {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-muted-foreground hover:text-foreground tab-xl:text-lg"
+              className="text-muted-foreground transition-colors duration-200 hover:text-foreground tab-xl:text-lg"
               onClick={onNavigate}
             >
               {link.label}{" "}
