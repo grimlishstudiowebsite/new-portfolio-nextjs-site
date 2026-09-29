@@ -3,6 +3,10 @@ import { getMyEntry } from "@/app/_lib/data-services/protected";
 import EditEntryForm from "@/app/_components/EditEntryForm";
 import LinkButton from "@/app/_components/LinkButton";
 
+export const metadata = {
+  robots: { index: false },
+};
+
 async function EditEntryPage({ params }) {
   const { entryId } = await params;
   const entry = await getMyEntry(entryId);

@@ -1,6 +1,10 @@
 import CreateEntryForm from "@/app/_components/CreateEntryForm";
 import LinkButton from "@/app/_components/LinkButton";
 
+export const metadata = {
+  robots: { index: false },
+};
+
 function NewEntryPage() {
   return (
     <section>

@@ -3,7 +3,7 @@ function Loading() {
   return (
     <div>
       <Spinner />
-      <span>Loading Entry...</span>
+      <span>Loading Painting...</span>
     </div>
   );
 }

@@ -2,7 +2,8 @@ import { getEnquiries } from "@/app/_lib/data-services/protected";
 import AccountNav from "@/app/_components/AccountNav";
 
 export const metadata = {
-  title: "Enquiries",
+  title: "Admin Enquiries",
+  robots: { index: false },
 };
 
 async function EnquiriesPage() {

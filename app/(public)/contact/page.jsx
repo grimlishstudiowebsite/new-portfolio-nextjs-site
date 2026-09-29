@@ -1,10 +1,29 @@
 import ContactForm from "@/app/_components/ContactForm";
+import siteConfig from "@/app/_lib/site.config";
+
+export const metadata = {
+  title: "Contact page",
+  description:
+    "Get in touch for information about current artwork or to just reach out",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 function ContactPage() {
   return (
     <section>
-      <div className="mb-2 flex flex-col items-center gap-2 pb-4">
-        <h1 className="text-2xl">New Enquiry</h1>
+      <div className="mb-6 flex flex-col items-center gap-3 text-center">
+        <h1 className="mb-2 text-3xl font-semibold">Contact Lis</h1>
+        <p className="max-w-xl py-4 text-[18px] text-muted-foreground">
+          Have a question about an original artwork? Send Lis at Grimlish Studio
+          an enquiry about a piece you’ve seen in the portfolio. Lis is based in
+          Bundaberg, Queensland.
+          <p>
+            If you’re asking about a particular artwork, please include its
+            title or product number in your message.
+          </p>
+        </p>
       </div>
       <div className="mx-auto w-full max-w-xl px-4">
         <ContactForm />

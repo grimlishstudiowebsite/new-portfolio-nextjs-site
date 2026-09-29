@@ -6,6 +6,7 @@ import AccountNav from "@/app/_components/AccountNav";
 export const metadata = {
   title: "My Entries",
   description: "Entries i have made",
+  robots: { index: false },
 };
 
 async function EntriesPage() {

@@ -9,7 +9,7 @@ function Header() {
   return (
     <MobileMenuProvider>
       <header className="">
-        <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-2 py-6">
           <Logo />
           <div className="flex flex-col gap-2">
             <div className="hidden tab-sm:block">

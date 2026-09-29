@@ -167,14 +167,40 @@ async function createEntryAction(_previousState, formData) {
 
 async function createContactAction(_previousState, formData) {
 
-
 	const name = String(formData.get('name') ?? "").trim();
 	const email = String(formData.get('email') ?? "").trim();
 	const phone = String(formData.get('phone') ?? "").trim();
 	const message = String(formData.get('message') ?? "").trim();
 
+	const honeypot = String(formData.get("contact_website") ?? "").trim();
+
+	if (honeypot) {
+		redirect("/contact/success");
+	}
+
 	if (!name || !email || !message) {
 		return { error: 'Name, email and message required' }
+	}
+
+	if (message.length > 3000) {
+
+		return { error: 'Message too long - needs to be 3000 characters or less' }
+	}
+
+	const seoSpamPhrases = [
+		"seo services",
+		"ranking",
+		"optimize",
+
+
+	];
+
+	const lowerMessage = message.toLowerCase();
+
+	if (seoSpamPhrases.some((phrase) => lowerMessage.includes(phrase))) {
+		return {
+			error: "Your enquiry could not be submitted. Please revise it and try again.",
+		};
 	}
 
 	const supabase = await createClient();
@@ -187,7 +213,6 @@ async function createContactAction(_previousState, formData) {
 		message
 	}
 
-
 	const { data: enquiry, error } = await supabase
 		.from('enquiries')
 		.insert(enquiryObject)
@@ -198,10 +223,7 @@ async function createContactAction(_previousState, formData) {
 		return { error: "Your enquiry could not be sent" }
 	}
 
-
-
 	redirect("/contact/success");
-
 }
 
 
@@ -256,7 +278,7 @@ async function updateEntryAction(_previousState, formData) {
 
 	const { data: existingEntry, error: existingEntryError } = await supabase
 		.from("entries")
-		.select("id, image_path")
+		.select("id, image_path, slug")
 		.eq("id", entryId)
 		.eq("user_id", user.id)
 		.maybeSingle()
@@ -335,7 +357,7 @@ async function updateEntryAction(_previousState, formData) {
 	const { data: updateEntry, error } = await supabase
 		.from('entries')
 		.update(entryUpdateObject)
-		.eq('id', entryId)
+		.eq("id", entryId)
 		.eq('user_id', user.id)
 		.select('id')
 		.maybeSingle()
@@ -373,18 +395,19 @@ async function updateEntryAction(_previousState, formData) {
 
 			console.error(removeOldImageError)
 		}
-
 	}
 
+	revalidatePath("/");
+	revalidatePath("/entries");
+	revalidatePath(`/entries/${existingEntry.slug}`);
 
+	if (existingEntry.slug !== slug) {
+		revalidatePath(`/entries/${slug}`);
+	}
 
+	revalidatePath("/account/entries");
 
-	revalidatePath("/")
-	revalidatePath("/entries")
-	revalidatePath(`/entries/${entryId}`)
-	revalidatePath("/account/entries")
-
-	redirect("/account/entries")
+	redirect("/account/entries");
 }
 
 
@@ -407,7 +430,7 @@ async function deleteEntryAction(_previousState, formData) {
 
 	const { data: entry, error: entryError } = await supabase
 		.from('entries')
-		.select('id , image_path')
+		.select("id, image_path, slug")
 		.eq('id', entryId)
 		.eq('user_id', user.id)
 		.maybeSingle()
@@ -452,17 +475,14 @@ async function deleteEntryAction(_previousState, formData) {
 			console.error(storageError);
 
 		}
-	}
+	};
 
-	revalidatePath("/")
-	revalidatePath("/entries")
-	revalidatePath(`/entries/${entryId}`)
-	revalidatePath("/account/entries")
+	revalidatePath("/");
+	revalidatePath("/entries");
+	revalidatePath(`/entries/${entry.slug}`);
+	revalidatePath("/account/entries");
 
-	redirect("/account/entries")
-
-
-
+	redirect("/account/entries");
 
 }
 

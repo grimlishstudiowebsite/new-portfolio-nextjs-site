@@ -1,6 +1,9 @@
 import "server-only"
 
 import { createClient } from "@/app/_lib/supabase/server";
+import { createPublicClient } from "@/app/_lib/supabase/public";
+
+
 
 
 
@@ -39,7 +42,7 @@ async function getAllEntries(category = "", currentPage) {
 
 	let query = supabase
 		.from('entries')
-		.select("id, title, description, image_url, category, slug, productSku",
+		.select("id, title, description, image_url, category, slug, productSku, year",
 			{ count: "exact" })
 		.eq("status", "active")
 
@@ -72,15 +75,15 @@ async function getAllEntries(category = "", currentPage) {
 
 
 
-async function getEntry(entryId) {
+async function getEntry(slug) {
 
-	const supabase = await createClient();
+	const supabase = createPublicClient();
 
 	const { data: entry, error } = await supabase
 		.from('entries')
 		.select("*")
 		.eq("status", "active")
-		.eq("id", entryId)
+		.eq("slug", slug)
 		.maybeSingle()
 
 	if (error) { throw new Error("Entries could not be loaded") }
@@ -90,7 +93,23 @@ async function getEntry(entryId) {
 
 }
 
+async function getEntriesForStaticParams() {
+
+	const supabase = createPublicClient();
+
+	const { data: entries, error } = await supabase
+		.from('entries')
+		.select("slug")
+		.eq('status', "active")
+
+	if (error) {
+		throw new Error('No Entry loaded')
+	}
+
+	return entries;
+
+}
 
 
 
-export { getLatestEntries, getAllEntries, getEntry, }
+export { getLatestEntries, getAllEntries, getEntry, getEntriesForStaticParams }

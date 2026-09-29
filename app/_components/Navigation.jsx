@@ -17,14 +17,14 @@ function Navigation({ variant = "desktop", onNavigate }) {
         className={
           isMobile
             ? "flex flex-col gap-3 text-sm font-medium"
-            : "flex items-center gap-4 text-sm font-medium dtop-sm:gap-8"
+            : "flex items-center gap-5 text-sm font-medium dtop-sm:gap-10"
         }
       >
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-muted-foreground transition-colors duration-200 hover:text-foreground tab-xl:text-lg"
+              className="text-muted-foreground transition-colors duration-200 hover:text-foreground tab-xl:text-[16px]"
               onClick={onNavigate}
             >
               {link.label}{" "}

@@ -19,6 +19,17 @@ function ContactForm() {
         </p>
       )}
 
+      <div aria-hidden="true" className="absolute -left-[9999px]">
+        <label htmlFor="contact_website">Leave this field empty</label>
+        <input
+          id="contact_website"
+          name="contact_website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="space-y-2">
         <label htmlFor="name">Name</label>
         <input
@@ -57,6 +68,7 @@ function ContactForm() {
           id="message"
           name="message"
           rows={6}
+          maxLength={3000}
           required
           className="w-full rounded border border-line bg-muted"
         />

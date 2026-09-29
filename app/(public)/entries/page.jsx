@@ -5,10 +5,14 @@ import EntryCard from "@/app/_components/EntryCard";
 import EntryFilter from "@/app/_components/EntryFilter";
 import Pagination from "@/app/_components/Pagination";
 import { notFound } from "next/navigation";
+import siteConfig from "@/app/_lib/site.config";
 
 export const metadata = {
-  title: "Entries",
-  description: "Browse all entries",
+  title: "Browse Current Artwork ",
+  description: `Browse all current artwork produced by ${siteConfig.name}`,
+  alternates: {
+    canonical: "/entries",
+  },
 };
 
 async function EntriesPage({ searchParams }) {

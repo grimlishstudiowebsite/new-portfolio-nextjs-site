@@ -6,7 +6,7 @@ function EntryCard({ entry }) {
   const imageAlt = entry.image_url ? entry.title : "";
 
   return (
-    <Link href={`/entries/${entry.id}`} className="space-y-3 p-4">
+    <Link href={`/entries/${entry.slug}`} className="space-y-3 p-4">
       <div>
         <div className="relative aspect-5/6 shadow-lg">
           <Image
@@ -18,8 +18,8 @@ function EntryCard({ entry }) {
           />
         </div>
 
-        <div className="flex flex-col justify-around p-2">
-          <h3 className="font-semibold">{entry.title}</h3>
+        <div className="flex flex-col justify-around px-1 py-2">
+          <h3 className="font-sans text-[18px] font-medium">{entry.title}</h3>
           <p className="text-muted-foreground">{entry.year}</p>
         </div>
       </div>
