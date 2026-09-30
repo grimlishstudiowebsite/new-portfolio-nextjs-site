@@ -48,8 +48,29 @@ function CopyrightPage() {
         and include the artwork title or product number, and how you would like
         to use it.
       </p>
-
-      <p>Nothing on this page limits uses permitted by law.</p>
+      <p className="mb-6">Nothing on this page limits uses permitted by law.</p>
+      <h2 className="mb-4 text-2xl font-semibold">
+        Contact Enquiries & Privacy
+      </h2>
+      <div className="flex flex-col gap-4">
+        <p>
+          When you submit the contact form, Grimlish Studio collects your name,
+          email address, optional phone number and message so we can respond.
+        </p>
+        <p>
+          The enquiry is saved in the database, and we receive an email
+          notification containing its details. If you have a question about
+          information you submitted or want to request its deletion, please use
+          the email Grimlish Studio&nbsp;
+          <Link
+            className="underline"
+            href="mailto:grimlishstudiowebsite@gmail.com"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </div>
     </div>
   );
 }

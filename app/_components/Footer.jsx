@@ -18,7 +18,7 @@ function Footer() {
                 href="/copyright"
                 className="font-semibold hover:text-foreground hover:underline"
               >
-                Copyright & Image Use
+                Copyright & Privacy
               </Link>
             </li>
             <li>
