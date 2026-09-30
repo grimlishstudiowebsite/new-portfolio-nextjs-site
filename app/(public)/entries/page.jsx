@@ -2,7 +2,6 @@ import { getAllEntries } from "@/app/_lib/data-services/public";
 
 import EntryCard from "@/app/_components/EntryCard";
 
-import EntryFilter from "@/app/_components/EntryFilter";
 import Pagination from "@/app/_components/Pagination";
 import { notFound } from "next/navigation";
 import siteConfig from "@/app/_lib/site.config";
@@ -16,15 +15,13 @@ export const metadata = {
 };
 
 async function EntriesPage({ searchParams }) {
-  const { category = "", page = "1" } = await searchParams;
-
-  const selectedCategory = category.trim();
+  const { page = "1" } = await searchParams;
 
   const requestedPage = Number(page);
   const currentPage =
     Number.isInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
 
-  const entriesResults = await getAllEntries(selectedCategory, currentPage);
+  const entriesResults = await getAllEntries(currentPage);
 
   const { entries, totalPages, pageOutOfRange } = entriesResults;
 
@@ -40,9 +37,6 @@ async function EntriesPage({ searchParams }) {
           <p className="mb-4 text-center text-base font-medium">
             No Artwork found
           </p>
-        </div>
-        <div className="">
-          <EntryFilter category={selectedCategory} />
         </div>
       </div>
     );
@@ -62,11 +56,7 @@ async function EntriesPage({ searchParams }) {
         ))}
       </div>
       <div className="flex items-center justify-center dtop-sm:mb-4">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          category={selectedCategory}
-        />
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
       </div>
     </div>
   );

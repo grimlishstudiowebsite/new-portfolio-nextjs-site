@@ -29,16 +29,7 @@ function CreateEntryForm() {
           className="w-full rounded border border-line bg-muted"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="category">Category</label>
-        <input
-          type="text"
-          id="category"
-          name="category"
 
-          className="w-full rounded border border-line bg-muted"
-        />
-      </div>
       <div className="space-y-2">
         <label htmlFor="description">Description</label>
         <textarea

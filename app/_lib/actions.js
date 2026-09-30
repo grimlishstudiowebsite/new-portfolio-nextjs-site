@@ -1,5 +1,7 @@
 'use server';
 
+import { sendEnquiryNotification } from "./email";
+
 import { redirect } from "next/navigation";
 import { createClient } from "./supabase/server";
 import { requireAdmin } from "./auth";
@@ -46,7 +48,6 @@ async function createEntryAction(_previousState, formData) {
 
 	const title = String(formData.get("title") ?? "").trim();
 	const description = String(formData.get("description") ?? "").trim();
-	const category = String(formData.get("category") ?? "").trim();
 	const dimensions = String(formData.get("dimensions") ?? "").trim();
 
 	const yearInput = String(formData.get("year") ?? "").trim();
@@ -127,7 +128,6 @@ async function createEntryAction(_previousState, formData) {
 				user_id: user.id,
 				title,
 				description,
-				category,
 				dimensions,
 				year,
 				slug,
@@ -183,8 +183,11 @@ async function createContactAction(_previousState, formData) {
 	}
 
 	if (message.length > 3000) {
-
 		return { error: 'Message too long - needs to be 3000 characters or less' }
+	}
+
+	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+		return { error: "Enter a valid email address" };
 	}
 
 	const seoSpamPhrases = [
@@ -223,6 +226,14 @@ async function createContactAction(_previousState, formData) {
 		return { error: "Your enquiry could not be sent" }
 	}
 
+	try {
+		await sendEnquiryNotification({ name, email, phone, message });
+
+	} catch (mailError) {
+
+		console.error("Enquiry saved, but notification email failed:", mailError);
+	}
+
 	redirect("/contact/success");
 }
 
@@ -236,7 +247,6 @@ async function updateEntryAction(_previousState, formData) {
 
 	const title = String(formData.get("title") ?? "").trim();
 	const description = String(formData.get("description") ?? "").trim();
-	const category = String(formData.get("category") ?? "").trim();
 
 	const dimensions = String(formData.get("dimensions") ?? "").trim();
 
@@ -342,7 +352,6 @@ async function updateEntryAction(_previousState, formData) {
 
 		title,
 		description,
-		category,
 		slug,
 		dimensions,
 		year

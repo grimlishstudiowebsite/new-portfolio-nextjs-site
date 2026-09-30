@@ -27,11 +27,10 @@ async function getLatestEntries() {
 }
 
 
-async function getAllEntries(category = "", currentPage) {
+async function getAllEntries(currentPage) {
 
-	const categoryFilter = category.trim();
 
-	const entriesPerPage = 6;
+	const entriesPerPage = 9;
 
 	const from = (currentPage - 1) * entriesPerPage;
 	const to = from + entriesPerPage - 1;
@@ -42,14 +41,9 @@ async function getAllEntries(category = "", currentPage) {
 
 	let query = supabase
 		.from('entries')
-		.select("id, title, description, image_url, category, slug, productSku, year",
+		.select("id, title, description, image_url, slug, productSku, year",
 			{ count: "exact" })
 		.eq("status", "active")
-
-	if (categoryFilter) {
-
-		query = query.eq('category', categoryFilter)
-	}
 
 
 	const { data: entries, error, count } = await query

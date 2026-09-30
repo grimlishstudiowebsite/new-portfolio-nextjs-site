@@ -1,15 +1,11 @@
 import Link from "next/link";
 
-function Pagination({ currentPage, totalPages, category }) {
+function Pagination({ currentPage, totalPages }) {
   if (totalPages <= 1) {
     return null;
   }
   function createPageHref(page) {
     const params = new URLSearchParams();
-
-    if (category) {
-      params.set("category", String(category));
-    }
 
     params.set("page", String(page));
 

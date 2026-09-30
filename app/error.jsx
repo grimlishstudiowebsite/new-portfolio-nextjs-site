@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-function Error({ error, retry }) {
+function Error({ error, reset }) {
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -17,7 +17,7 @@ function Error({ error, retry }) {
 
       <button
         type="button"
-        onClick={() => retry()}
+        onClick={() => reset()}
         className="rounded bg-primary px-4 py-2 text-primary-light"
       >
         Try Again

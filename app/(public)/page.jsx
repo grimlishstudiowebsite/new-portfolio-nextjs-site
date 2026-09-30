@@ -1,5 +1,7 @@
 import LatestEntries from "@/app/_components/LatestEntries";
+SocialsBar;
 import siteConfig from "@/app/_lib/site.config";
+import SocialsBar from "@/app/_components/SocialsBar";
 
 export const metadata = {
   title: "Original Artwork",
@@ -28,6 +30,7 @@ function Homepage() {
         }}
       />
       <LatestEntries />
+      <SocialsBar />
     </div>
   );
 }
